@@ -59,8 +59,11 @@ export default {
         center: [-87.6298, 41.8781], // starting position [lng, lat]
         zoom: 9, // starting zoom
       });
-
-      var marker = new mapboxgl.Marker().setLngLat([-87.6298, 41.8781]).addTo(map);
+      var popup = new mapboxgl.Popup({ offset: 25 }).setText("This is Chicago.");
+      var marker = new mapboxgl.Marker()
+        .setLngLat([-87.6298, 41.8781])
+        .setPopup(popup)
+        .addTo(map);
 
       console.log(marker);
 

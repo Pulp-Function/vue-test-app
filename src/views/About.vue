@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     setupMap: function() {
-      mapboxgl.accessToken = "API-KEY-GOES-HERE";
+      mapboxgl.accessToken = process.env.VUE_APP_MAPBOX_API_KEY;
       var map = new mapboxgl.Map({
         container: "map", // container id
         style: "mapbox://styles/mapbox/streets-v11", // style URL

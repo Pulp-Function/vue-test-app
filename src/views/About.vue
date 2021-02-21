@@ -1,6 +1,7 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
+    <div id="map"></div>
     <autocomplete
       source="https://api.github.com/search/repositories?q="
       results-property="items"
@@ -20,7 +21,16 @@
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
+<style>
+#map {
+  width: 100%;
+  height: 300px;
+}
+</style>
+
 <script>
+/* global mapboxgl */
+
 import Multiselect from "vue-multiselect";
 import Vue from "vue";
 import Chartkick from "vue-chartkick";
@@ -36,6 +46,21 @@ export default {
       value: null,
       options: ["list", "of", "options"],
     };
+  },
+  mounted: function() {
+    this.setupMap();
+  },
+  methods: {
+    setupMap: function() {
+      mapboxgl.accessToken = "API-KEY-GOES-HERE";
+      var map = new mapboxgl.Map({
+        container: "map", // container id
+        style: "mapbox://styles/mapbox/streets-v11", // style URL
+        center: [-74.5, 40], // starting position [lng, lat]
+        zoom: 9, // starting zoom
+      });
+      console.log(map);
+    },
   },
 };
 </script>

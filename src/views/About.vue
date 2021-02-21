@@ -56,9 +56,14 @@ export default {
       var map = new mapboxgl.Map({
         container: "map", // container id
         style: "mapbox://styles/mapbox/streets-v11", // style URL
-        center: [-74.5, 40], // starting position [lng, lat]
+        center: [-87.6298, 41.8781], // starting position [lng, lat]
         zoom: 9, // starting zoom
       });
+
+      var marker = new mapboxgl.Marker().setLngLat([-87.6298, 41.8781]).addTo(map);
+
+      console.log(marker);
+
       console.log(map);
     },
   },

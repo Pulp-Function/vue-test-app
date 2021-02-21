@@ -45,6 +45,10 @@ export default {
     return {
       value: null,
       options: ["list", "of", "options"],
+      places: [
+        { lat: -25.363, lng: 131.044, description: "A place in Australia" },
+        { lat: -33.8675, lng: 151.207, description: "The main city!" },
+      ],
     };
   },
   mounted: function() {
@@ -56,18 +60,17 @@ export default {
       var map = new mapboxgl.Map({
         container: "map", // container id
         style: "mapbox://styles/mapbox/streets-v11", // style URL
-        center: [-87.6298, 41.8781], // starting position [lng, lat]
-        zoom: 9, // starting zoom
+        center: [this.places[0].lng, this.places[0].lat], // starting position [lng, lat]
+        zoom: 3, // starting zoom
       });
-      var popup = new mapboxgl.Popup({ offset: 25 }).setText("This is Chicago.");
-      var marker = new mapboxgl.Marker()
-        .setLngLat([-87.6298, 41.8781])
-        .setPopup(popup)
-        .addTo(map);
-
-      console.log(marker);
-
-      console.log(map);
+      this.places.forEach(function(place) {
+        var popup = new mapboxgl.Popup({ offset: 25 }).setText(place.description);
+        var marker = new mapboxgl.Marker()
+          .setLngLat([place.lng, place.lat])
+          .setPopup(popup)
+          .addTo(map);
+        console.log(marker);
+      });
     },
   },
 };
